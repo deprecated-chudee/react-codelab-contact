@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "react-addons-update": "^15.6.2",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.17"
   },
