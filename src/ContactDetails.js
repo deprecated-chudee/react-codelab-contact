@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 
 export default class ContactDetails extends Component {
-    constructor(props){
-        super(props)
-
-        this.state = {
-            isEdit: false,
-            name: '',
-            phone: ''
-        }
-
-        this.handleToggle = this.handleToggle.bind(this)
-        this.handleChange = this.handleChange.bind(this)
+    state = {
+        isEdit: false,
+        name: '',
+        phone: ''
     }
 
-    handleToggle() {
+    handleToggle = () => {
         if(!this.state.isEdit) {
             this.setState({
                 name: this.props.contact.name,
@@ -28,7 +21,7 @@ export default class ContactDetails extends Component {
         })
     }
 
-    handleChange(e) {
+    handleChange = e => {
         let nextState = {}
         nextState[e.target.name] = e.target.value
         this.setState(nextState)

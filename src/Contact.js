@@ -7,40 +7,47 @@ import ContactCreate from './ContactCreate';
 import update from 'react-addons-update';
 
 export default class Contact extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            selectedKey: -1,
-            keyword: '',
-            contactData: [
-                { name: 'Apple', phone: '010-0000-0000' },
-                { name: 'Betty', phone: '010-0000-1111' },
-                { name: 'Chudee', phone: '010-0000-2222' },
-                { name: 'David', phone: '010-0000-3333' },
-            ]
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-
-        this.handleCreate = this.handleCreate.bind(this)
-        this.handleEdit = this.handleEdit.bind(this)
-        this.handleRemove = this.handleRemove.bind(this)
+    state = {
+        selectedKey: -1,
+        keyword: '',
+        contactData: [
+            { name: 'Apple', phone: '010-0000-0000' },
+            { name: 'Betty', phone: '010-0000-1111' },
+            { name: 'Chudee', phone: '010-0000-2222' },
+            { name: 'David', phone: '010-0000-3333' },
+        ]
     }
 
-    handleChange(e) {
+    componentWillMount() {
+        const contactData = localStorage.contactData
+
+        if(contactData) {
+            this.setState({
+                contactData: JSON.parse(contactData)
+            })
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(JSON.stringify(prevState.contactData) != JSON.stringify(this.state.contactData)) {
+            localStorage.contactData = JSON.stringify(this.state.contactData)
+        }
+    }
+
+    handleChange = e => {
         this.setState({
             keyword: e.target.value
         })
     }
 
-    handleClick(key) {
+    handleClick = key => {
         this.setState({
             selectedKey: key
         })
         console.log(key, 'is selected')
     }
 
-    handleCreate(contact) {
+    handleCreate = contact => {
         this.setState({
             contactData: update(
                 this.state.contactData, 
@@ -49,7 +56,7 @@ export default class Contact extends Component {
         })
     }
 
-    handleEdit(name, phone) {
+    handleEdit = (name, phone) => {
         this.setState({
             contactData: update(
                 this.state.contactData,
@@ -63,7 +70,7 @@ export default class Contact extends Component {
         })
     }
 
-    handleRemove() {
+    handleRemove = () => {
         this.setState({
             contactData: update(
                 this.state.contactData, 

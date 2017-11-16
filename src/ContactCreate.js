@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
 
 export default class ContactCreate extends Component {
-    constructor(props) {
-        super(props) 
-        this.state = {
-            name: '',
-            phone: ''
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleClick = this.handleClick.bind(this)
+    state = {
+        name: '',
+        phone: ''
     }
 
-    handleChange(e) {
+    handleChange = e => {
         let nextState = {}
         nextState[e.target.name] = e.target.value
         this.setState(nextState)
     }
 
-    handleClick() {
+    handleClick = () => {
         const contact = {
             name: this.state.name,
             phone: this.state.phone
