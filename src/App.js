@@ -6,7 +6,7 @@ export default class App extends Component {
         return (
             <div>
                 <h1> Contacts </h1>
-                <Contact />
+                <Contact/>
             </div>
         )
     }

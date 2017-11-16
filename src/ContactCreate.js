@@ -29,6 +29,14 @@ export default class ContactCreate extends Component {
             name: '',
             phone: ''
         })
+
+        this.nameInput.focus()
+    }
+
+    handleKeyPress = e => {
+        if(e.charCode === 13) {
+            this.handleClick()
+        }
     }
 
     render() {
@@ -42,13 +50,15 @@ export default class ContactCreate extends Component {
                         placeholder="name" 
                         value={this.state.name}
                         onChange={this.handleChange}
+                        ref={ (ref) => { this.nameInput = ref }}
                     />
                     <input 
-                        type="text" 
+                        type="number"
                         name="phone"
                         placeholder="phone" 
                         value={this.state.phone}
                         onChange={this.handleChange}
+                        onKeyPress={this.handleKeyPress}
                     />
                 </p>
 

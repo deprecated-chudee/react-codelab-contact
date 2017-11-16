@@ -34,6 +34,12 @@ export default class ContactDetails extends Component {
         this.setState(nextState)
     }
 
+    handleKeyPress = e => {
+        if(e.charCode === 13) {
+            this.handleToggle()
+        }
+    }
+
     render() {
         const read = (
             <div> 
@@ -64,6 +70,7 @@ export default class ContactDetails extends Component {
                         placeholder="phone" 
                         value={this.state.phone}
                         onChange={this.handleChange}
+                        onKeyPress={this.handleKeyPress}
                     />
                 </p>
             </div>
